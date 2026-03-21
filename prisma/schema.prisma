@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Vote {
+  id              String   @id @default(uuid())
+  constituency    String
+  district        String
+  party           String
+  fingerprintHash String
+  ipHash          String
+  createdAt       DateTime @default(now())
+
+  @@unique([fingerprintHash, constituency])
+  @@index([constituency])
+}
