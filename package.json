@@ -6,13 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:check": "node scripts/check-db.mjs"
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^5.1.0",
     "@prisma/adapter-pg": "^7.5.0",
     "@prisma/client": "^7.5.0",
-    "@supabase/supabase-js": "^2.99.3",
+    "@supabase/supabase-js": "^2.100.0",
     "@upstash/redis": "^1.37.0",
     "next": "16.2.1",
     "pg": "^8.20.0",

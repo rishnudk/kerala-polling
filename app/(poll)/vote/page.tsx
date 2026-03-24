@@ -84,7 +84,7 @@ function VotePageInner() {
                 // Save to localStorage so the banner shows instantly next visit
                 localStorage.setItem(`kp_voted_${constituency}`, selected);
                 router.push(
-                    `/results/${encodeURIComponent(constituency)}?district=${encodeURIComponent(district)}`
+                    `/results/${encodeURIComponent(constituency)}?district=${encodeURIComponent(district)}&success=1`
                 );
                 return;
             }
