@@ -4,62 +4,88 @@ import { CONSTITUENCIES } from "@/data/constituencies";
 
 interface Props {
   district: string;
-  value:    string;
+  value: string;
   onChange: (constituency: string) => void;
+  theme?: "light" | "dark";
 }
 
-export function ConstituencySelector({ district, value, onChange }: Props) {
+export function ConstituencySelector({
+  district,
+  value,
+  onChange,
+  theme = "light",
+}: Props) {
   const options = district ? CONSTITUENCIES[district] ?? [] : [];
   const disabled = !district;
+  const isDark = theme === "dark";
 
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-medium text-gray-700">
-        Constituency <span className="text-gray-400 font-normal">(Mandalam)</span>
+      <label className={`text-sm font-medium ${isDark ? "text-emerald-50" : "text-gray-700"}`}>
+        Constituency{" "}
+        <span className={`font-normal ${isDark ? "text-emerald-100/55" : "text-gray-400"}`}>
+          (Mandalam)
+        </span>
       </label>
       <div className="relative">
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          className={`
-            w-full appearance-none rounded-xl border px-4 py-3 pr-10
-            text-sm transition-colors outline-none
-            focus:ring-2 focus:ring-green-500 focus:border-transparent
-            ${disabled
-              ? "bg-gray-50 border-gray-100 text-gray-300 cursor-not-allowed"
+          className={`w-full appearance-none rounded-xl border px-4 py-3 pr-10 text-sm transition-colors outline-none focus:border-transparent focus:ring-2 focus:ring-green-500 ${
+            disabled
+              ? isDark
+                ? "cursor-not-allowed border-emerald-100/10 bg-white/5 text-emerald-100/35"
+                : "cursor-not-allowed border-gray-100 bg-gray-50 text-gray-300"
               : value
-                ? "bg-white border-green-400 text-gray-900"
-                : "bg-white border-gray-200 text-gray-400"
-            }
-          `}
+                ? isDark
+                  ? "border-emerald-300/40 bg-[#0e2225] text-emerald-50"
+                  : "border-green-400 bg-white text-gray-900"
+                : isDark
+                  ? "border-emerald-100/15 bg-[#0e2225] text-emerald-100/55"
+                  : "border-gray-200 bg-white text-gray-400"
+          }`}
         >
           <option value="">
-            {disabled ? "Select a district first" : "— Select your constituency —"}
+            {disabled ? "Select a district first" : "Select your constituency"}
           </option>
-          {options.map((c) => (
-            <option key={c} value={c}>{c}</option>
+          {options.map((constituency) => (
+            <option key={constituency} value={constituency}>
+              {constituency}
+            </option>
           ))}
         </select>
 
-        {/* Custom chevron */}
         <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2">
           <svg
-            className={`w-4 h-4 ${disabled ? "text-gray-200" : "text-gray-400"}`}
-            fill="none" viewBox="0 0 16 16"
+            className={`h-4 w-4 ${
+              disabled
+                ? isDark
+                  ? "text-emerald-100/25"
+                  : "text-gray-200"
+                : isDark
+                  ? "text-emerald-100/55"
+                  : "text-gray-400"
+            }`}
+            fill="none"
+            viewBox="0 0 16 16"
           >
-            <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5"
-                  strokeLinecap="round" strokeLinejoin="round"/>
+            <path
+              d="M4 6l4 4 4-4"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1.5"
+            />
           </svg>
         </div>
       </div>
 
-      {/* Helper: how many constituencies in this district */}
-      {district && (
-        <p className="text-xs text-gray-400">
+      {district ? (
+        <p className={`text-xs ${isDark ? "text-emerald-100/55" : "text-gray-400"}`}>
           {options.length} constituencies in {district}
         </p>
-      )}
+      ) : null}
     </div>
   );
 }
