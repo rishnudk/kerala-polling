@@ -1,6 +1,6 @@
 "use client";
 
-import { DISTRICTS } from "@/data/Constituencies";
+import { DISTRICTS } from "@/data/constituencies";
 
 interface Props {
   value:    string;

@@ -1,6 +1,6 @@
 "use client";
 
-import { CONSTITUENCIES } from "@/data/Constituencies";
+import { CONSTITUENCIES } from "@/data/constituencies";
 
 interface Props {
   district: string;
