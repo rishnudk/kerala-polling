@@ -63,7 +63,7 @@ export function KeralaDistrictMap({
             <div className="pointer-events-none absolute inset-x-8 top-0 h-40 rounded-full bg-emerald-400/10 blur-3xl" />
             <svg
               viewBox="0 0 400 1000"
-              className="relative z-10 mx-auto h-[58vh] min-h-[420px] w-full max-w-[420px]"
+              className="relative z-10 mx-auto h-[75vh] min-h-[500px] w-full max-w-[600px]"
               role="img"
               aria-label="Interactive Kerala district map"
             >
