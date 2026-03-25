@@ -9,10 +9,12 @@ export default function HomePage() {
   const router = useRouter();
   const [district, setDistrict] = useState("");
   const [constituency, setConstituency] = useState("");
+  const [step, setStep] = useState<"selection" | "vote" | "results">("selection");
 
   function handleDistrictChange(nextDistrict: string) {
     setDistrict(nextDistrict);
     setConstituency("");
+    setStep("selection");
   }
 
   function handleContinue() {
@@ -20,9 +22,7 @@ export default function HomePage() {
       return;
     }
 
-    router.push(
-      `/vote?constituency=${encodeURIComponent(constituency)}&district=${encodeURIComponent(district)}`
-    );
+    setStep("vote");
   }
 
   return (
@@ -32,6 +32,8 @@ export default function HomePage() {
       onDistrictChange={handleDistrictChange}
       onConstituencyChange={setConstituency}
       onContinue={handleContinue}
+      step={step}
+      setStep={setStep}
     />
   );
 }
