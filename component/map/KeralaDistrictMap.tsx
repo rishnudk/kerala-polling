@@ -155,9 +155,9 @@ export function KeralaDistrictMap({
 
           {/* Mobile Text (Visible only on mobile) */}
           <div className="lg:hidden mt-10 text-center px-6">
-             <h1 className="text-4xl font-extrabold text-gray-900 mb-4">
+             <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
                 {step === "selection" ? "Choose your district" : "Kerala Poll"}
-             </h1>
+             </h2>
              <p className="text-gray-500">
                 Explore the districts and cast your vote.
              </p>

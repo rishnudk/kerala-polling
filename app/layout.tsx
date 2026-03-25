@@ -33,6 +33,20 @@ export const metadata: Metadata = {
     locale: "en_IN",
     type: "website",
   },
+  alternates: {
+    canonical: "https://keralapolling.com",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   twitter: {
     card: "summary_large_image",
     title: "Kerala Polling | Real-time Public Opinion & Live Results",
