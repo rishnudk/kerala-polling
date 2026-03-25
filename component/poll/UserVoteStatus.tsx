@@ -36,8 +36,8 @@ export function UserVoteStatus() {
   }
 
   return (
-    <div className="w-full mb-6 px-2">
-      <RainbowButton 
+    <div className="w-full px-2">
+      <RainbowButton
         className=""
       >
         <div className="flex items-center justify-center gap-3">
