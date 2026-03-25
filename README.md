@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kerala Polling
 
-## Getting Started
+A web-based election opinion poll for Kerala, India. This is a public survey tool designed to capture voting preferences across various constituencies using a simple, interactive interface.
 
-First, run the development server:
+## 🚀 Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Interactive Map**: Navigate through Kerala's districts and constituencies using a clickable SVG map.
+- **Anti-Duplicate Voting**: Multi-layered protection to ensure fair polling without requiring user login:
+  - LocalStorage flags for immediate feedback.
+  - Device fingerprinting via FingerprintJS.
+  - IP-based rate limiting using Upstash Redis.
+- **Live Results**: Real-time aggregated vote counts visualized with interactive bar charts (Recharts).
+- **Responsive Design**: Mobile-first UI styled with Tailwind CSS 4 and modern aesthetics.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Database**: [PostgreSQL](https://www.postgresql.org/) (Supabase) with [Prisma 7](https://www.prisma.io/)
+- **Cache/Rate Limit**: [Upstash Redis](https://upstash.com/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Realtime**: [Supabase Realtime](https://supabase.com/docs/guides/realtime) for live updates.
+
+## 🏁 Getting Started
+
+### Prerequisites
+
+- Node.js (v18+)
+- Supabase account (PostgreSQL + Realtime)
+- Upstash account (Redis)
+
+### Environment Setup
+
+Create a `.env.local` file in the root directory with the following variables:
+
+```env
+DATABASE_URL="postgresql://..."
+REDIS_URL="https://..."
+REDIS_TOKEN="..."
+NEXT_PUBLIC_SUPABASE_URL="https://..."
+NEXT_PUBLIC_SUPABASE_ANON_KEY="..."
+HASH_SALT="your-random-secret"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Synchronize the database schema:
+   ```bash
+   npx prisma db push
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Visit [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Learn More
+## 📁 Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+- `app/`: Application routes, layouts, and API endpoints.
+- `component/`: Reusable UI and visualization components.
+- `data/`: Geographic data (districts/constituencies) and party information.
+- `hooks/`: Custom hooks for fingerprinting, polling status, and live results.
+- `lib/`: Shared utilities for database, cache, and hashing.
+- `prisma/`: Prisma schema and database configuration.
+- `public/`: Static assets.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+*Disclaimer: This is an opinion poll tool and not an official election system.*
