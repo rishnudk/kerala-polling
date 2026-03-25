@@ -52,54 +52,54 @@ export function GlobalResults({ onBack }: Props) {
   })).sort((a, b) => b.votes - a.votes);
 
   return (
-    <div className="relative z-10">
+    <div className="relative z-10 flex flex-col h-full">
       <button
         onClick={onBack}
-        className="text-xs text-emerald-300/50 hover:text-emerald-300 mb-4 transition-colors"
+        className="text-xs font-bold text-gray-400 hover:text-gray-900 mb-6 flex items-center gap-1 transition-colors group"
       >
-        ← Back to selection
+        <span className="group-hover:-translate-x-0.5 transition-transform">←</span> Back to selection
       </button>
 
-      <div className="mb-6">
-        <p className="text-xs uppercase tracking-[0.3em] text-emerald-300/70 mb-2">
-          Final Standings
+      <div className="mb-8">
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">
+          Statewide Standings
         </p>
-        <h2 className="text-3xl font-bold text-white mb-1">Kerala Aggregate</h2>
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mt-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <p className="text-xs font-medium text-emerald-400">Live Data</p>
+        <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight mb-2">Kerala Aggregate</h2>
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100">
+          <div className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
+          <p className="text-[10px] font-bold text-blue-700 uppercase tracking-wider">Live Data</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className="bg-white/5 rounded-2xl p-4 border border-emerald-500/10">
-          <p className="text-[10px] uppercase tracking-wider text-emerald-100/40 mb-1">Total Votes</p>
-          <p className="text-2xl font-bold text-white">{data.total.toLocaleString()}</p>
+      <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Total Votes</p>
+          <p className="text-2xl font-bold text-gray-900">{data.total.toLocaleString()}</p>
         </div>
-        <div className="bg-white/5 rounded-2xl p-4 border border-emerald-500/10">
-          <p className="text-[10px] uppercase tracking-wider text-emerald-100/40 mb-1">Constituencies</p>
-          <p className="text-2xl font-bold text-white">20</p>
+        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Constituencies</p>
+          <p className="text-2xl font-bold text-gray-900">140</p>
         </div>
       </div>
 
-      <div className="bg-white/5 rounded-2xl p-5 border border-emerald-500/10 mb-6">
+      <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm mb-8">
         <ResultsChart data={rows} total={data.total} />
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
         {rows.map((row) => (
-          <div key={row.party} className="flex items-center justify-between text-sm py-1 border-b border-white/5 last:border-0">
-            <div className="flex items-center gap-2">
-               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: row.color }} />
-               <span className="text-emerald-50/70">{row.party}</span>
+          <div key={row.party} className="flex items-center justify-between text-sm py-2 border-b border-gray-50 last:border-0">
+            <div className="flex items-center gap-3">
+               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: row.color }} />
+               <span className="font-bold text-gray-700">{row.party}</span>
             </div>
-            <span className="font-mono text-emerald-100/90">{row.votes.toLocaleString()} votes</span>
+            <span className="font-mono font-bold text-gray-500">{row.votes.toLocaleString()} <span className="text-[10px] uppercase text-gray-300">votes</span></span>
           </div>
         ))}
       </div>
 
-      <p className="text-[10px] text-center text-emerald-100/30 font-medium py-6 uppercase tracking-widest">
-        Aggregate of all 140 constituencies
+      <p className="mt-auto text-[10px] text-center text-gray-400 font-bold py-6 uppercase tracking-widest">
+        Aggregate of all primary polling stations
       </p>
     </div>
   );

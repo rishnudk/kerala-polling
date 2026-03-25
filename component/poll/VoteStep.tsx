@@ -64,22 +64,24 @@ export function VoteStep({ district, constituency, onSuccess, onBack }: Props) {
   }
 
   return (
-    <div className="relative z-10">
+    <div className="relative z-10 flex flex-col h-full">
       <button
         onClick={onBack}
-        className="text-xs text-emerald-300/50 hover:text-emerald-300 mb-4 flex items-center gap-1 transition-colors"
+        className="text-xs font-bold text-gray-400 hover:text-gray-900 mb-6 flex items-center gap-1 transition-colors group"
       >
-        ← Back to selection
+        <span className="group-hover:-translate-x-0.5 transition-transform">←</span> Back to selection
       </button>
 
-      <h2 className="text-2xl font-semibold text-white mb-1">{constituency}</h2>
-      <p className="text-sm text-emerald-100/60 mb-6">{district} district</p>
+      <div className="mb-8">
+        <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">{constituency}</h2>
+        <p className="mt-1 text-lg font-medium text-gray-400 italic">{district} district</p>
+      </div>
 
-      <p className="text-sm font-medium text-emerald-50/80 mb-4">
+      <p className="text-sm font-bold text-gray-600 mb-4">
         Who would you vote for?
       </p>
 
-      <div className="flex flex-col gap-3 mb-6">
+      <div className="flex flex-col gap-3 mb-8">
         {PARTIES.map((party) => (
           <PartyCard
             key={party.id}
@@ -92,22 +94,24 @@ export function VoteStep({ district, constituency, onSuccess, onBack }: Props) {
       </div>
 
       {error && (
-        <div className="mb-4 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-xs text-red-400">
+        <div className="mb-6 p-4 rounded-2xl bg-red-50 border border-red-100 text-xs font-medium text-red-600">
           {error}
         </div>
       )}
 
-      <button
-        onClick={handleSubmit}
-        disabled={!selected || submitting}
-        className={`w-full py-4 rounded-2xl text-sm font-semibold transition-all duration-300 ${
-          selected && !submitting
-            ? "bg-emerald-400 text-[#062316] shadow-[0_12px_40px_rgba(52,211,153,0.3)] hover:scale-[1.02]"
-            : "bg-white/5 text-emerald-100/20 cursor-not-allowed"
-        }`}
-      >
-        {submitting ? "Submitting..." : selected ? `Vote for ${selected}` : "Select a party"}
-      </button>
+      <div className="mt-auto">
+        <button
+          onClick={handleSubmit}
+          disabled={!selected || submitting}
+          className={`w-full py-5 rounded-2xl text-sm font-bold transition-all duration-300 ${
+            selected && !submitting
+              ? "bg-gray-900 text-white shadow-xl hover:bg-black hover:-translate-y-1 active:translate-y-0"
+              : "bg-gray-100 text-gray-300 cursor-not-allowed"
+          }`}
+        >
+          {submitting ? "Submitting..." : selected ? `Confirm Vote for ${selected} →` : "Select a party to vote"}
+        </button>
+      </div>
     </div>
   );
 }

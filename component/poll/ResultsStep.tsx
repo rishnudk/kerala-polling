@@ -54,22 +54,24 @@ export function ResultsStep({ constituency, district, onBack }: Props) {
   })).sort((a, b) => b.votes - a.votes);
 
   return (
-    <div className="relative z-10">
+    <div className="relative z-10 flex flex-col h-full">
       <button
         onClick={onBack}
-        className="text-xs text-emerald-300/50 hover:text-emerald-300 mb-4 transition-colors"
+        className="text-xs font-bold text-gray-400 hover:text-gray-900 mb-6 flex items-center gap-1 transition-colors group"
       >
-        ← Back to selection
+        <span className="group-hover:-translate-x-0.5 transition-transform">←</span> Back to selection
       </button>
 
-      <h2 className="text-2xl font-semibold text-white mb-1">{constituency}</h2>
-      <p className="text-sm text-emerald-100/60 mb-6">{district} district</p>
+      <div className="mb-8">
+        <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">{constituency}</h2>
+        <p className="mt-1 text-lg font-medium text-gray-400 italic">{district} district</p>
+      </div>
 
-      <div className="bg-white/5 rounded-2xl p-4 border border-emerald-500/10 mb-6">
+      <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm mb-8">
         <ResultsChart data={rows} total={data.total} />
       </div>
 
-      <p className="text-[10px] text-center text-emerald-100/30 uppercase tracking-widest">
+      <p className="mt-auto text-[10px] text-center text-gray-400 uppercase tracking-[0.2em] font-bold">
         Live results • Updates every 15s
       </p>
     </div>
