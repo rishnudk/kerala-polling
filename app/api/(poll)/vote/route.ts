@@ -29,15 +29,15 @@ export async function POST(req: NextRequest) {
     const ipHash          = hashValue(ip);
     const fingerprintHash = hashValue(fingerprint);
 
-    // Rate limit: 1 vote per IP per constituency per 24h
-    const limited = await checkRateLimit(`vote:${ipHash}:${constituency}`, {
+    // Rate limit: 1 vote per IP across ALL constituencies per 24h
+    const limited = await checkRateLimit(`vote:${ipHash}`, {
       maxRequests: 1,
       windowSeconds: 86400,
     });
 
     if (limited) {
       return NextResponse.json(
-        { error: "Already voted from this network today." },
+        { error: "Only one vote allowed from this network today." },
         { status: 429 }
       );
     }
@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     if (error?.code === "P2002") {
       return NextResponse.json(
-        { error: "Already voted in this constituency." },
+        { error: "This device has already cast a vote." },
         { status: 409 }
       );
     }
@@ -72,8 +72,8 @@ export async function GET(req: NextRequest) {
   const fingerprintHash = hashValue(fingerprint);
 
   const existing = await prisma.vote.findUnique({
-    where: { fingerprintHash_constituency: { fingerprintHash, constituency } },
-    select: { party: true, createdAt: true },
+    where: { fingerprintHash },
+    select: { party: true, createdAt: true, constituency: true },
   });
 
   return NextResponse.json({
