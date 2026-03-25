@@ -9,7 +9,7 @@ export default function HomePage() {
   const router = useRouter();
   const [district, setDistrict] = useState("");
   const [constituency, setConstituency] = useState("");
-  const [step, setStep] = useState<"selection" | "vote" | "results">("selection");
+  const [step, setStep] = useState<"selection" | "vote" | "results" | "global_results">("selection");
 
   function handleDistrictChange(nextDistrict: string) {
     setDistrict(nextDistrict);

@@ -7,6 +7,7 @@ import geoData from '@/data/district.json'
 import { geoPath, geoMercator } from 'd3-geo'
 import { VoteStep } from "@/component/poll/VoteStep";
 import { ResultsStep } from "@/component/poll/ResultsStep";
+import { GlobalResults } from "@/component/poll/GlobalResults";
 
 interface Props {
   district: string;
@@ -14,8 +15,8 @@ interface Props {
   onDistrictChange: (district: string) => void;
   onConstituencyChange: (constituency: string) => void;
   onContinue: () => void;
-  step: "selection" | "vote" | "results";
-  setStep: (step: "selection" | "vote" | "results") => void;
+  step: "selection" | "vote" | "results" | "global_results";
+  setStep: (step: "selection" | "vote" | "results" | "global_results") => void;
 }
 
 export function KeralaDistrictMap({
@@ -59,11 +60,14 @@ export function KeralaDistrictMap({
             </p>
             <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
               {step === "selection" ? "Choose your district on the map" : 
+               step === "global_results" ? "Kerala Statewide Standings" :
                step === "vote" ? "Cast your vote" : "Live Standings"}
             </h1>
             <p className="mt-4 text-sm leading-7 text-emerald-50/70 sm:text-base">
               {step === "selection" 
                 ? "Explore all 14 districts, click one to lock it in, and then choose your constituency to continue to the poll."
+                : step === "global_results"
+                ? "View the aggregate totals for all parties across every constituency in Kerala."
                 : step === "vote" 
                 ? "Select a party to cast your vote for this constituency. Your response is anonymous and counted instantly."
                 : "See how the community is responding to the poll in real-time."}
@@ -156,6 +160,13 @@ export function KeralaDistrictMap({
                   ? `Continue with ${constituency}`
                   : "Select district and constituency"}
               </button>
+
+              <button
+                onClick={() => setStep("global_results")}
+                className="mt-4 w-full rounded-2xl border border-emerald-400/20 bg-emerald-400/5 px-4 py-3 text-xs font-semibold text-emerald-300 transition-all hover:bg-emerald-400/10"
+              >
+                View Statewide Standings
+              </button>
             </div>
           )}
 
@@ -172,6 +183,12 @@ export function KeralaDistrictMap({
             <ResultsStep 
               district={district}
               constituency={constituency}
+              onBack={() => setStep("selection")}
+            />
+          )}
+
+          {step === "global_results" && (
+            <GlobalResults 
               onBack={() => setStep("selection")}
             />
           )}
