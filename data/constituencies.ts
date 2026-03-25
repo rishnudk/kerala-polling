@@ -1,23 +1,79 @@
 export const CONSTITUENCIES: Record<string, string[]> = {
   Thiruvananthapuram: [
-    "Vattiyoorkavu","Thrikkakara","Kazhakoottam","Kundara",
-    "Kilimanoor","Nedumangad","Varkala","Attingal",
+    "Varkala","Attingal","Chirayinkeezhu","Nedumangad","Vamanapuram",
+    "Kazhakoottam","Vattiyoorkavu","Thiruvananthapuram","Nemom","Aruvikkara",
+    "Parassala","Kattakkada","Kovalam","Neyyattinkara"
   ],
+
   Kollam: [
-    "Kollam","Kunnathur","Kottarakkara","Pathanapuram","Punalur","Chadayamangalam",
+    "Kollam","Eravipuram","Chathannoor","Kundara","Kottarakkara",
+    "Pathanapuram","Punalur","Chadayamangalam","Kunnathur","Karunagappally",
+    "Chavara"
   ],
-  Pathanamthitta: ["Adoor","Thiruvalla","Ranni","Aranmula","Konni"],
-  Alappuzha:      ["Cherthala","Alappuzha","Ambalappuzha","Harippad","Kayamkulam","Mavelikkara"],
-  Kottayam:       ["Kottayam","Ettumanoor","Pala","Erattupetta","Kaduthuruthy"],
-  Idukki:         ["Devikulam","Udumbanchola","Thodupuzha","Idukki","Peerumade"],
-  Ernakulam:      ["Perumbavoor","Angamaly","Aluva","Kalamassery","Paravur","Ernakulam","Thrippunithura"],
-  Thrissur:       ["Thrissur","Ollur","Chalakudy","Kodungallur","Kunnamkulam","Guruvayur"],
-  Palakkad:       ["Palakkad","Thrithala","Ottapalam","Shoranur","Alathur","Chittur"],
-  Malappuram:     ["Manjeri","Tirur","Tanur","Malappuram","Wandur","Kondotty"],
-  Kozhikode:      ["Kozhikode North","Kozhikode South","Beypore","Kunnamangalam","Balussery","Vadakara"],
-  Wayanad:        ["Mananthavady","Sulthanbathery","Kalpetta"],
-  Kannur:         ["Kannur","Kalliasseri","Dharmadom","Thalassery","Irikkur","Azhikode","Peravoor"],
-  Kasaragod:      ["Kasaragod","Manjeshwar","Udma","Kanhangad","Trikaripur"],
+
+  Pathanamthitta: [
+    "Adoor","Konni","Aranmula","Ranni","Thiruvalla"
+  ],
+
+  Alappuzha: [
+    "Chengannur","Mavelikkara","Kayamkulam","Haripad","Ambalappuzha",
+    "Alappuzha","Cherthala"
+  ],
+
+  Kottayam: [
+    "Kottayam","Ettumanoor","Kaduthuruthy","Vaikom",
+    "Pala","Poonjar","Erattupetta"
+  ],
+
+  Idukki: [
+    "Devikulam","Udumbanchola","Thodupuzha","Idukki","Peerumade"
+  ],
+
+  Ernakulam: [
+    "Perumbavoor","Angamaly","Aluva","Kalamassery","Paravur",
+    "Vypin","Kochi","Thrippunithura","Ernakulam",
+    "Kothamangalam","Muvattupuzha","Piravom"
+  ],
+
+  Thrissur: [
+    "Kodungallur","Chalakudy","Irinjalakuda","Nattika","Kaipamangalam",
+    "Manalur","Ollur","Thrissur","Guruvayur","Kunnamkulam",
+    "Chelakkara","Wadakkanchery","Puthukkad"
+  ],
+
+  Palakkad: [
+    "Thrithala","Pattambi","Shoranur","Ottapalam","Kongad",
+    "Mannarkkad","Malampuzha","Palakkad","Tarur",
+    "Chittur","Nenmara","Alathur"
+  ],
+
+  Malappuram: [
+    "Kondotty","Ernad","Nilambur","Wandoor","Manjeri",
+    "Perinthalmanna","Mankada","Malappuram","Vengara",
+    "Vallikkunnu","Tirurangadi","Tanur","Tirur",
+    "Kottakkal","Thavanur","Ponnani"
+  ],
+
+  Kozhikode: [
+    "Balussery","Elathur","Kozhikode North","Kozhikode South",
+    "Beypore","Kunnamangalam","Koduvally",
+    "Thiruvambady","Kuttyadi","Nadapuram",
+    "Quilandy","Perambra"
+  ],
+
+  Wayanad: [
+    "Mananthavady","Sulthan Bathery","Kalpetta"
+  ],
+
+  Kannur: [
+    "Payyannur","Kalliasseri","Taliparamba","Irikkur","Azhikode",
+    "Kannur","Dharmadam","Thalassery","Kuthuparamba",
+    "Mattannur","Peravoor"
+  ],
+
+  Kasaragod: [
+    "Manjeshwar","Kasaragod","Udma","Kanhangad","Trikaripur"
+  ],
 };
 
 export const DISTRICTS = Object.keys(CONSTITUENCIES);
