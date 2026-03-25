@@ -54,7 +54,7 @@ export function KeralaDistrictMap({
   );
 
   const projection = geoMercator()
-    .fitSize([400, 1000], geoData as any)
+    .fitSize([600, 1200], geoData as any)
   const pathGenerator = geoPath().projection(projection)
 
   function handleDistrictClick(nextDistrict: string) {
@@ -68,33 +68,57 @@ export function KeralaDistrictMap({
   }
 
   return (
-    <div className="min-h-[calc(100vh-73px)] bg-white text-gray-900 font-sans">
-      <div className="mx-auto flex min-h-[calc(100vh-73px)] max-w-7xl flex-col gap-10 px-6 py-12 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:px-12">
-        <section className="flex flex-col gap-8">
-          <div className="max-w-xl">
-            <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl">
-              {step === "selection" ? "Choose your district" :
-                step === "global_results" ? "Kerala Statewide Standings" :
-                step === "vote" ? "Cast your vote" : "Live Standings"}
-            </h1>
-            <p className="mt-6 text-lg leading-relaxed text-gray-500">
-              {step === "selection"
-                ? "Explore all 14 districts, click one to lock it in, and then choose your constituency to continue to the poll."
-                : step === "global_results"
-                  ? "View the aggregate totals for all parties across every constituency in Kerala."
-                  : step === "vote"
-                    ? "Select a party to cast your vote for this constituency. Your response is anonymous and counted instantly."
-                    : "See how the community is responding to the poll in real-time."}
-            </p>
+    <div className="min-h-[calc(100vh-73px)] bg-white text-gray-900 font-sans selection:bg-blue-100 overflow-x-hidden">
+      <div className="mx-auto flex min-h-[calc(100vh-73px)] max-w-[1600px] flex-col gap-10 px-6 py-12 lg:grid lg:grid-cols-[1fr_400px] lg:items-start lg:px-12">
+        
+        {/* MAP SECTION with Floating Text */}
+        <section className="relative flex flex-col items-center justify-center min-h-[95vh]">
+          
+          {/* 
+             ADJUST TEXT POSITIONING (Desktop only):
+             - CHANGE 'top-0 right-4' to move the heading (e.g., 'top-10 right-10')
+          */}
+          <div className="hidden lg:block absolute top-0 right-39 z-20 max-w-xs text-right animate-in fade-in slide-in-from-right duration-700">
+             <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
+                {step === "selection" ? "Choose your district" :
+                 step === "global_results" ? "Kerala Status" :
+                 step === "vote" ? "Cast your vote" : "Live Standings"}
+             </h1>
+             <div className="h-1.5 w-24 bg-gray-900 ml-auto mt-4 rounded-full" />
           </div>
 
-          <div className="relative flex items-center justify-center p-4">
+          {/* 
+             ADJUST DESCRIPTION POSITIONING (Desktop only):
+             - CHANGE 'top-1/2 -translate-y-1/2 left-0' to move the description
+             - CHANGE 'max-w-[240px]' to change the width of the text block
+          */}
+          <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 left-0 z-20 max-w-[240px] animate-in fade-in slide-in-from-left duration-1000">
+             <div className="space-y-4">
+                <p className="text-xl leading-relaxed text-gray-500 font-medium">
+                  {step === "selection" 
+                    ? "Explore all 14 districts, click one to lock it in, and then choose your constituency."
+                    : step === "global_results"
+                    ? "View the aggregate totals for all parties across every constituency."
+                    : "Cast your vote or view real-time polling data."}
+                </p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-300">
+                   Interactive Polling Map
+                </p>
+             </div>
+          </div>
+
+          {/* 
+             ADJUST MAP SIZE:
+             - CHANGE 'h-[85vh]' to increase/decrease the map's vertical height
+             - CHANGE 'max-w-[750px]' to increase/decrease the map's horizontal limit
+          */}
+          <div className="relative flex items-center justify-center p-4 w-full h-full">
             {/* Floating shadow element behind the map */}
-            <div className="absolute inset-0 m-auto aspect-4/10 max-h-[70vh] w-full max-w-[400px] rounded-full bg-gray-200/30 blur-[100px]" />
+            <div className="absolute inset-0 m-auto aspect-[6/12] max-h-[90vh] w-full max-w-[1200px] rounded-full bg-gray-200/40 blur-[150px]" />
             
             <svg
-              viewBox="0 0 400 1000"
-              className="relative z-10 mx-auto h-[75vh] min-h-[500px] w-full max-w-[500px] drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
+              viewBox="0 0 600 1200"
+              className="relative z-10 mx-auto h-[92vh] min-h-[600px] w-full drop-shadow-[0_45px_100px_rgba(0,0,0,0.1)] transition-all duration-700"
               role="img"
               aria-label="Interactive Kerala district map"
             >
@@ -114,19 +138,29 @@ export function KeralaDistrictMap({
                     onMouseEnter={() => setHoveredDistrict(districtName)}
                     onMouseLeave={() => setHoveredDistrict('')}
                     onClick={() => handleDistrictClick(districtName)}
-                    className={`cursor-pointer transition-all duration-500 ease-out outline-none ${step !== 'selection' ? 'pointer-events-none opacity-40 grayscale-[0.5]' : ''}`}
+                    className={`cursor-pointer transition-all duration-500 ease-out outline-none ${step !== 'selection' ? 'pointer-events-none opacity-40 grayscale-[0.8]' : ''}`}
                     fill={isActive ? baseColor : `${baseColor}cc`}
                     stroke={isSelected ? "#000" : "white"}
                     strokeWidth={isSelected ? 3 : 1.5}
                     style={{
-                      filter: isSelected ? "drop-shadow(0 0 8px rgba(0,0,0,0.2))" : "none",
-                      transform: isSelected ? "scale(1.01)" : "scale(1)",
+                      filter: isSelected ? "drop-shadow(0 0 12px rgba(0,0,0,0.15))" : "none",
+                      transform: isSelected ? "scale(1.025)" : "scale(1)",
                       transformOrigin: "center",
                     }}
                   />
                 )
               })}
             </svg>
+          </div>
+
+          {/* Mobile Text (Visible only on mobile) */}
+          <div className="lg:hidden mt-10 text-center px-6">
+             <h1 className="text-4xl font-extrabold text-gray-900 mb-4">
+                {step === "selection" ? "Choose your district" : "Kerala Poll"}
+             </h1>
+             <p className="text-gray-500">
+                Explore the districts and cast your vote.
+             </p>
           </div>
         </section>
 
