@@ -72,7 +72,7 @@ export function KeralaDistrictMap({
       <div className="mx-auto flex min-h-[calc(100vh-73px)] max-w-[1600px] flex-col gap-10 px-6 py-12 lg:grid lg:grid-cols-[1fr_400px] lg:items-start lg:px-12">
         
         {/* MAP SECTION with Floating Text */}
-        <section className="relative flex flex-col items-center justify-center min-h-[95vh]">
+        <section className="relative flex flex-col items-center justify-start pt-0">
           
           {/* 
              ADJUST TEXT POSITIONING (Desktop only):
@@ -92,7 +92,7 @@ export function KeralaDistrictMap({
              - CHANGE 'top-1/2 -translate-y-1/2 left-0' to move the description
              - CHANGE 'max-w-[240px]' to change the width of the text block
           */}
-          <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 left-0 z-20 max-w-[240px] animate-in fade-in slide-in-from-left duration-1000">
+          <div className="hidden lg:block absolute top-[40%] -translate-y-1/2 left-0 z-20 max-w-[240px] animate-in fade-in slide-in-from-left duration-1000">
              <div className="space-y-4">
                 <p className="text-xl leading-relaxed text-gray-500 font-medium">
                   {step === "selection" 
@@ -112,9 +112,9 @@ export function KeralaDistrictMap({
              - CHANGE 'h-[85vh]' to increase/decrease the map's vertical height
              - CHANGE 'max-w-[750px]' to increase/decrease the map's horizontal limit
           */}
-          <div className="relative flex items-center justify-center p-4 w-full h-full">
+          <div className="relative flex items-center justify-center w-full h-full -mt-8">
             {/* Floating shadow element behind the map */}
-            <div className="absolute inset-0 m-auto aspect-[6/12] max-h-[90vh] w-full max-w-[1200px] rounded-full bg-gray-200/40 blur-[150px]" />
+            <div className="absolute inset-0 -top-10 m-auto aspect-6/12 max-h-[90vh] w-full max-w-[1200px] rounded-full bg-gray-200/40 blur-[150px]" />
             
             <svg
               viewBox="0 0 600 1200"
@@ -164,7 +164,7 @@ export function KeralaDistrictMap({
           </div>
         </section>
 
-        <aside className="lg:sticky lg:top-28">
+        <aside className="lg:sticky lg:top-4 lg:-translate-x-32 z-30">
           <div className="relative overflow-hidden rounded-[2.5rem] bg-gray-50/50 p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl min-h-[550px] flex flex-col transition-all duration-300">
             {step === "selection" && (
               <div className="relative z-10 flex flex-col h-full">
