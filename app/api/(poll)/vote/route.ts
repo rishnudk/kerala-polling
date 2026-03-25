@@ -62,11 +62,10 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const constituency = searchParams.get("constituency");
   const fingerprint  = searchParams.get("fingerprint");
 
-  if (!constituency || !fingerprint) {
-    return NextResponse.json({ error: "Missing params" }, { status: 400 });
+  if (!fingerprint) {
+    return NextResponse.json({ error: "Missing fingerprint" }, { status: 400 });
   }
 
   const fingerprintHash = hashValue(fingerprint);

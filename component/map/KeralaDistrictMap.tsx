@@ -8,6 +8,7 @@ import { geoPath, geoMercator } from 'd3-geo'
 import { VoteStep } from "@/component/poll/VoteStep";
 import { ResultsStep } from "@/component/poll/ResultsStep";
 import { GlobalResults } from "@/component/poll/GlobalResults";
+import { UserVoteStatus } from "@/component/poll/UserVoteStatus";
 
 interface Props {
   district: string;
@@ -70,21 +71,21 @@ export function KeralaDistrictMap({
   return (
     <div className="min-h-[calc(100vh-73px)] bg-white text-gray-900 font-sans selection:bg-blue-100 overflow-x-hidden">
       <div className="mx-auto flex min-h-[calc(100vh-73px)] max-w-[1600px] flex-col gap-10 px-6 py-12 lg:grid lg:grid-cols-[1fr_400px] lg:items-start lg:px-12">
-        
+
         {/* MAP SECTION with Floating Text */}
         <section className="relative flex flex-col items-center justify-start pt-0">
-          
+
           {/* 
              ADJUST TEXT POSITIONING (Desktop only):
              - CHANGE 'top-0 right-4' to move the heading (e.g., 'top-10 right-10')
           */}
           <div className="hidden lg:block absolute top-0 right-39 z-20 max-w-xs text-right animate-in fade-in slide-in-from-right duration-700">
-             <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
-                {step === "selection" ? "Choose your district" :
-                 step === "global_results" ? "Kerala Status" :
-                 step === "vote" ? "Cast your vote" : "Live Standings"}
-             </h1>
-             <div className="h-1.5 w-24 bg-gray-900 ml-auto mt-4 rounded-full" />
+            <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
+              {step === "selection" ? "Choose your district" :
+                step === "global_results" ? "Kerala Status" :
+                  step === "vote" ? "Cast your vote" : "Live Standings"}
+            </h1>
+            <div className="h-1.5 w-24 bg-gray-900 ml-auto mt-4 rounded-full" />
           </div>
 
           {/* 
@@ -93,18 +94,18 @@ export function KeralaDistrictMap({
              - CHANGE 'max-w-[240px]' to change the width of the text block
           */}
           <div className="hidden lg:block absolute top-[40%] -translate-y-1/2 left-0 z-20 max-w-[240px] animate-in fade-in slide-in-from-left duration-1000">
-             <div className="space-y-4">
-                <p className="text-xl leading-relaxed text-gray-500 font-medium">
-                  {step === "selection" 
-                    ? "Explore all 14 districts, click one to lock it in, and then choose your constituency."
-                    : step === "global_results"
+            <div className="space-y-4">
+              <p className="text-xl leading-relaxed text-gray-500 font-medium">
+                {step === "selection"
+                  ? "Explore all 14 districts, click one to lock it in, and then choose your constituency."
+                  : step === "global_results"
                     ? "View the aggregate totals for all parties across every constituency."
                     : "Cast your vote or view real-time polling data."}
-                </p>
-                <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-300">
-                   Interactive Polling Map
-                </p>
-             </div>
+              </p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-300">
+                Interactive Polling Map
+              </p>
+            </div>
           </div>
 
           {/* 
@@ -115,7 +116,7 @@ export function KeralaDistrictMap({
           <div className="relative flex items-center justify-center w-full h-full -mt-8">
             {/* Floating shadow element behind the map */}
             <div className="absolute inset-0 -top-10 m-auto aspect-6/12 max-h-[90vh] w-full max-w-[1200px] rounded-full bg-gray-200/40 blur-[150px]" />
-            
+
             <svg
               viewBox="0 0 600 1200"
               className="relative z-10 mx-auto h-[92vh] min-h-[600px] w-full drop-shadow-[0_45px_100px_rgba(0,0,0,0.1)] transition-all duration-700"
@@ -155,16 +156,19 @@ export function KeralaDistrictMap({
 
           {/* Mobile Text (Visible only on mobile) */}
           <div className="lg:hidden mt-10 text-center px-6">
-             <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
-                {step === "selection" ? "Choose your district" : "Kerala Poll"}
-             </h2>
-             <p className="text-gray-500">
-                Explore the districts and cast your vote.
-             </p>
+            <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
+              {step === "selection" ? "Choose your district" : "Kerala Poll"}
+            </h2>
+            <p className="text-gray-500">
+              Explore the districts and cast your vote.
+            </p>
           </div>
+
         </section>
 
         <aside className="lg:sticky lg:top-4 lg:-translate-x-32 z-30">
+          <UserVoteStatus />
+
           <div className="relative overflow-hidden rounded-[2.5rem] bg-gray-50/50 p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl min-h-[550px] flex flex-col transition-all duration-300">
             {step === "selection" && (
               <div className="relative z-10 flex flex-col h-full">
