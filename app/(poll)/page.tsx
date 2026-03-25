@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { KeralaDistrictMap } from "@/component/map/KeralaDistrictMap";
-import geoData from '@/data/district.geojson'
 
 export default function HomePage() {
   const router = useRouter();

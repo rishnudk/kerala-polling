@@ -55,11 +55,8 @@ export function KeralaDistrictMap({
       <div className="mx-auto flex min-h-[calc(100vh-73px)] max-w-7xl flex-col gap-10 px-5 py-8 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:px-10">
         <section className="flex flex-col gap-6">
           <div className="max-w-xl">
-            <p className="text-xs uppercase tracking-[0.35em] text-emerald-300/70">
-              Kerala Poll Atlas
-            </p>
             <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              {step === "selection" ? "Choose your district on the map" : 
+              {step === "selection" ? "Choose your district" : 
                step === "global_results" ? "Kerala Statewide Standings" :
                step === "vote" ? "Cast your vote" : "Live Standings"}
             </h1>
