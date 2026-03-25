@@ -16,7 +16,7 @@ export const CONSTITUENCIES: Record<string, string[]> = {
   Malappuram:     ["Manjeri","Tirur","Tanur","Malappuram","Wandur","Kondotty"],
   Kozhikode:      ["Kozhikode North","Kozhikode South","Beypore","Kunnamangalam","Balussery","Vadakara"],
   Wayanad:        ["Mananthavady","Sulthanbathery","Kalpetta"],
-  Kannur:         ["Kannur","Dharmadom","Thalassery","Irikkur","Azhikode","Peravoor"],
+  Kannur:         ["Kannur","Kalliasseri","Dharmadom","Thalassery","Irikkur","Azhikode","Peravoor"],
   Kasaragod:      ["Kasaragod","Manjeshwar","Udma","Kanhangad","Trikaripur"],
 };
 
