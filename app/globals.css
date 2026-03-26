@@ -8,6 +8,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
+  --font-nunito-sans: var(--font-nunito-sans);
   --font-display: var(--font-outfit);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --animate-rainbow: rainbow var(--speed, 2s) infinite linear;

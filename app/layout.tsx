@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Inter } from "next/font/google";
+import { Outfit, Inter, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -12,6 +12,11 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const nunitoSans = Nunito_Sans({
+  variable: "--font-nunito-sans",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Kerala Polling | Real-time Public Opinion & Live Results",
   description: "Join the conversation and participate in real-time polling across Kerala's districts. Stay updated with live, localized results and community insights.",
@@ -20,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kerala Polling | Real-time Public Opinion & Live Results",
     description: "Participate in real-time polling across Kerala's districts and see live results.",
-    url: "https://keralapolling.com", // Placeholder
+    url: "https://kerala-polling.vercel.app", // Placeholder
     siteName: "Kerala Polling",
     images: [
       {
@@ -34,7 +39,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   alternates: {
-    canonical: "https://keralapolling.com",
+    canonical: "https://kerala-polling.vercel.app",
   },
   robots: {
     index: true,
@@ -68,7 +73,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${inter.variable} h-full antialiased`}
+      className={`${outfit.variable} ${inter.variable} ${nunitoSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

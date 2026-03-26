@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://keralapolling.com/sitemap.xml',
+    sitemap: 'https://kerala-polling.vercel.app/sitemap.xml',
   }
 }

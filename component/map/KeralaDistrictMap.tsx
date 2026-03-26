@@ -80,7 +80,7 @@ export function KeralaDistrictMap({
              - CHANGE 'top-0 right-4' to move the heading (e.g., 'top-10 right-10')
           */}
           <div className="hidden lg:block absolute top-0 right-39 z-20 max-w-xs text-right animate-in fade-in slide-in-from-right duration-700">
-            <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
+            <h1 className=" font-nunito-sans text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
               {step === "selection" ? "Choose your district" :
                 step === "global_results" ? "Kerala Status" :
                   step === "vote" ? "Cast your vote" : "Live Standings"}
