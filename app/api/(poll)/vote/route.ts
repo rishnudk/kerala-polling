@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
 
     if (limited) {
       return NextResponse.json(
-        { error: "Only one vote allowed from this network today." },
+        { error: "Only one vote allowed from same network." },
         { status: 429 }
       );
     }
