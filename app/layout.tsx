@@ -18,7 +18,7 @@ const nunitoSans = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kerala-polling.vercel.app"),
+  metadataBase: new URL("https://kerala-polling.rishnu.xyz"),
   title: "Kerala Polling | Real-time Public Opinion & Live Results",
   description: "Join the conversation and participate in real-time polling across Kerala's districts. Stay updated with live, localized results and community insights.",
   keywords: ["Kerala Polling", "Public Opinion", "Live Results", "District-wise Data", "Kerala Elections", "Community Insights"],
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kerala Polling | Real-time Public Opinion & Live Results",
     description: "Participate in real-time polling across Kerala's districts and see live results.",
-    url: "https://kerala-polling.vercel.app",
+    url: "https://kerala-polling.rishnu.xyz",
     siteName: "Kerala Polling",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   alternates: {
-    canonical: "https://kerala-polling.vercel.app",
+    canonical: "https://kerala-polling.rishnu.xyz",
   },
   robots: {
     index: true,
