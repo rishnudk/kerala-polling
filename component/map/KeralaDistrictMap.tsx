@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef, useEffect } from "react";
 import { ConstituencySelector } from "@/component/poll/ConstituencySelector";
 import { KERALA_DISTRICT_MAP } from "@/data/kerala-map";
 import geoData from '@/data/district.json'
@@ -47,6 +47,10 @@ export function KeralaDistrictMap({
   setStep,
 }: Props) {
   const [hoveredDistrict, setHoveredDistrict] = useState("");
+  const [highlight, setHighlight] = useState(false);
+  const mapRef = useRef<SVGSVGElement>(null);
+  const selectRef = useRef<HTMLDivElement>(null);
+
 
   const activeDistrict = hoveredDistrict || district || "Thiruvananthapuram";
   const activeMeta = useMemo(
@@ -67,6 +71,23 @@ export function KeralaDistrictMap({
 
     onDistrictChange(nextDistrict);
   }
+
+  useEffect(() => {
+    if (district && !constituency) {
+      setHighlight(true);
+
+      if (window.innerWidth < 1024) {
+        selectRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        })
+      }
+      const timer = setTimeout(() => {
+        setHighlight(false)
+      }, 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [district, constituency])
 
   return (
     <div className="min-h-[calc(100vh-73px)] bg-white text-gray-900 font-sans selection:bg-blue-100 overflow-x-hidden">
@@ -166,7 +187,9 @@ export function KeralaDistrictMap({
 
         </section>
 
-        <aside className="lg:sticky lg:top-4 lg:-translate-x-32 z-30">
+        <aside
+          ref={selectRef}
+           className="lg:sticky lg:top-4 lg:-translate-x-32 z-30">
           <UserVoteStatus />
 
           <div className="relative overflow-hidden rounded-[2.5rem] bg-gray-50/50 p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl min-h-[550px] flex flex-col transition-all duration-300">
@@ -209,6 +232,7 @@ export function KeralaDistrictMap({
                     value={constituency}
                     onChange={onConstituencyChange}
                     theme="light"
+                    highlight={highlight}
                   />
 
                   <button
