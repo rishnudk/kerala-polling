@@ -9,6 +9,7 @@ import { VoteStep } from "@/component/poll/VoteStep";
 import { ResultsStep } from "@/component/poll/ResultsStep";
 import { GlobalResults } from "@/component/poll/GlobalResults";
 import { UserVoteStatus } from "@/component/poll/UserVoteStatus";
+import { RainbowButton } from "../ui/rainbow-button";
 
 interface Props {
   district: string;
@@ -189,7 +190,7 @@ export function KeralaDistrictMap({
 
         <aside
           ref={selectRef}
-           className="lg:sticky lg:top-4 lg:-translate-x-32 z-30">
+          className="lg:sticky lg:top-4 lg:-translate-x-32 z-30">
           <UserVoteStatus />
 
           <div className="relative overflow-hidden rounded-[2.5rem] bg-gray-50/50 p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl min-h-[550px] flex flex-col transition-all duration-300">
@@ -250,12 +251,14 @@ export function KeralaDistrictMap({
                     </span>
                   </button>
 
-                  <button
+                  <RainbowButton
                     onClick={() => setStep("global_results")}
-                    className="w-full rounded-2xl border border-gray-200 bg-white px-6 py-4 text-xs font-bold text-gray-600 transition-all hover:bg-gray-50 hover:border-gray-300"
+                    variant="outline"
+                    className="w-full rounded-2xl px-6 py-4 text-xs font-bold transition-all"
                   >
                     View Statewide Standings
-                  </button>
+                  </RainbowButton>
+
                 </div>
               </div>
             )}
