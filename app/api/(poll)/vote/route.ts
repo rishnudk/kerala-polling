@@ -29,15 +29,28 @@ export async function POST(req: NextRequest) {
     const ipHash          = hashValue(ip);
     const fingerprintHash = hashValue(fingerprint);
 
-    // Rate limit: 1 vote per IP across ALL constituencies per 24h
-    const limited = await checkRateLimit(`vote:${ipHash}`, {
+    // 1. Block Fingerprint forever (1 year)
+    const fpLimited = await checkRateLimit(`vote:fp:${fingerprintHash}`, {
       maxRequests: 1,
-      windowSeconds: 86400,
+      windowSeconds: 31536000,
     });
 
-    if (limited) {
+    if (fpLimited) {
       return NextResponse.json(
-        { error: "Only one vote allowed from same network." },
+        { error: "This device has already cast a vote." },
+        { status: 429 }
+      );
+    }
+
+    // 2. Block IP forever (1 year)
+    const ipLimited = await checkRateLimit(`vote:ip:${ipHash}`, {
+      maxRequests: 1,
+      windowSeconds: 31536000,
+    });
+
+    if (ipLimited) {
+      return NextResponse.json(
+        { error: "Only one vote allowed per network/IP." },
         { status: 429 }
       );
     }
